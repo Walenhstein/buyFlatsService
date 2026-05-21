@@ -9,6 +9,9 @@ app.use(cors({ origin: [
         'http://localhost:5173',
         'https://buyflatsservice-8zy7d759t-vadyatere-25zk.onreza.app/'
     ] }));
+app.get('/', async (req, res) => {
+    res.status(200).send('Server is alive yet');
+});
 app.get('/api/:type', async (req, res) => {
     try {
         const { page = 1, sort = 'desc', roomQuantity, 'room[min]': roomMin, 'room[max]': roomMax } = req.query;
@@ -76,7 +79,7 @@ app.get('/api/:type/:id', async (req, res) => {
         return res.status(500).json({ error: 'Неизвестная ошибка' });
     }
 });
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log('Сервер успешно запущен');
 });
 //# sourceMappingURL=server.js.map
