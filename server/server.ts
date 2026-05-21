@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors({origin: [
     'http://localhost:5173', 
-    'https://buyflatservice.netlify.app/'
+    'https://buyflatsservice-8zy7d759t-vadyatere-25zk.onreza.app/'
 ]}));
 
 app.get('/api/:type', async (req, res) => {
