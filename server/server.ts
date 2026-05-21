@@ -4,7 +4,7 @@ import 'dotenv/config'
 
 const app = express();
 const api_key = process.env.api_key;
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
 app.use(cors({origin: [

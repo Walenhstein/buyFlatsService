@@ -1,0 +1,2 @@
+[deploy]
+entry_point = "dist/server.js"
