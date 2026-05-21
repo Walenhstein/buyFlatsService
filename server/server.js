@@ -4,7 +4,10 @@ import 'dotenv/config';
 const app = express();
 const api_key = process.env.api_key;
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({ origin: [
+        'http://localhost:5173',
+        'https://buyflatservice.netlify.app/'
+    ] }));
 app.get('/api/:type', async (req, res) => {
     try {
         const { page = 1, sort = 'desc', roomQuantity, 'room[min]': roomMin, 'room[max]': roomMax } = req.query;
@@ -46,7 +49,6 @@ app.get('/api/:type', async (req, res) => {
         //     default:
         //         break;
         // }
-        console.log(url);
         const data = await fetch(url);
         if (!data.ok)
             return res.status(500).json({ error: 'Ошибка получения данных внешнего API' });

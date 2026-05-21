@@ -1,4 +1,4 @@
-const api_link = new URL('http://localhost:3000');
+const api_link = new URL('https://buyflatserver.netlify.app');
 
 export async function fetchAll(type: string, page: string, sort: string, roomQuantity: string[]) {
     try {
