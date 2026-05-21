@@ -1,4 +1,4 @@
-const api_link = new URL('https://buyflatserver.netlify.app');
+const api_link = new URL('https://buyflatsserver-vadyatere-25zk.onreza.app');
 
 export async function fetchAll(type: string, page: string, sort: string, roomQuantity: string[]) {
     try {
