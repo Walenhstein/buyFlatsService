@@ -13,10 +13,6 @@ app.use(cors({origin: [
 
 app.use(express.json());
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 839b1b90fe43f3503b4e87124008bbeba54eb3d2
 app.get('/', async (req, res) => {
     res.status(200).send('Server is alive yet');
 });
