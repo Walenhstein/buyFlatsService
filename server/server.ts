@@ -8,11 +8,15 @@ const PORT = Number(process.env.PORT) || 3000;
 
 app.use(cors({origin: [
     'http://localhost:5173', 
-    'https://buyflatsservice-8zy7d759t-vadyatere-25zk.onreza.app'
+    'https://buyflatsservice-pxd0xkwr4-vadyatere-25zk.onreza.app'
 ]}));
 
 app.use(express.json());
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 839b1b90fe43f3503b4e87124008bbeba54eb3d2
 app.get('/', async (req, res) => {
     res.status(200).send('Server is alive yet');
 });
