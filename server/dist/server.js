@@ -5,10 +5,10 @@ const app = express();
 const api_key = process.env.api_key;
 const PORT = Number(process.env.PORT) || 3000;
 app.use(express.json());
-app.use(cors({ origin: [
-        'http://localhost:5173',
-        'https://buyflatsservice-8zy7d759t-vadyatere-25zk.onreza.app'
-    ] }));
+app.use(cors({origin: [
+    'http://localhost:5173', 
+    'https://buyflatsservice-pxd0xkwr4-vadyatere-25zk.onreza.app'
+]}));
 app.get('/', async (req, res) => {
     res.status(200).send('Server is alive yet');
 });
