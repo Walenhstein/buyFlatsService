@@ -6,7 +6,10 @@ const app = express();
 const api_key = process.env.api_key;
 const PORT = Number(process.env.PORT) || 3000;
 
-app.use(cors({origin: '*'}));
+app.use(cors({origin: [
+    'http://localhost:5173', 
+    'https://buyflatsservice-pxd0xkwr4-vadyatere-25zk.onreza.app'
+]}));
 
 app.use(express.json());
 
