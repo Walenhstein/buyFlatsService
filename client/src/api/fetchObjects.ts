@@ -1,8 +1,8 @@
-const api_link = new URL('https://buyflatsserver-vadyatere-25zk.onreza.app');
+const api_link = new URL('/api');
 
 export async function fetchAll(type: string, page: string, sort: string, roomQuantity: string[]) {
     try {
-        const link = new URL(`../api/${type}`, api_link)
+        const link = new URL(`../${type}`, api_link)
         link.searchParams.append('page', page);
         link.searchParams.append('sort', sort);
         //if (roomQuantity) link.searchParams.append('roomQuantity', String(roomQuantity));
