@@ -38,7 +38,7 @@ import placeholderImg from '../assets/placeholder.webp';
                         </GridCol>
                         <GridCol span={{base: 12, md: 6}}>
                     <Text fw={700}>Описание:</Text>
-                    <ScrollArea h={300} type="never" style={{paddingBottom: '20px', paddingTop: '5px', whiteSpace: 'pre-wrapx'}}>
+                    <ScrollArea h={300} type="never" style={{paddingBottom: '20px', paddingTop: '5px', whiteSpace: 'pre-wrap'}}>
                     <Text>{clearData.description}</Text>
                     </ScrollArea>
                         </GridCol>

@@ -1,7 +1,11 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router";
-import CategoryPage from "../pages/CategoryPage";
-import ObjectBoardPage from "../pages/ObjectBoardPage";
-import ObjectPage from "../pages/ObgectPage";
+import { Loader } from "@mantine/core";
+
+const CategoryPage = lazy(() => import("../pages/CategoryPage"));
+const ObjectBoardPage = lazy (() => import("../pages/ObjectBoardPage"));
+const ObjectPage = lazy(() => import("../pages/ObjectPage"));
+
 
 
 export const router = createBrowserRouter([
@@ -11,18 +15,34 @@ export const router = createBrowserRouter([
     },
     {
         path: '/category',
-        element: <CategoryPage />
+        element: (
+            <Suspense fallback={<Loader />}>
+                <CategoryPage />
+            </Suspense>
+        )
     },
     {
         path: '/objects',
-        element: <Navigate to='/category' replace />
+        element: (
+            <Suspense fallback={<Loader />}>
+                <Navigate to='/category' replace />
+            </Suspense>
+        )
     },
     {
         path: 'objects/:type',
-        element: <ObjectBoardPage/>, 
+        element: (
+            <Suspense fallback={<Loader />}>
+                <ObjectBoardPage/>
+            </Suspense>
+        ), 
         children: [{
             path: ':id',
-            element: <ObjectPage /> 
+            element: (
+            <Suspense fallback={<Loader />}>
+                <ObjectPage />
+            </Suspense>
+        ) 
         }]
     }
 ])
