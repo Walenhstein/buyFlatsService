@@ -25,34 +25,25 @@ app.get('/api/:type', async (req, res) => {
         url.searchParams.append('order_dir', String(sort));
         url.searchParams.append('order_by', String(orderedBy));
         url.searchParams.append('is_active', String(isActive));
-        if (roomQuantity) {
-            switch (roomQuantity) {
-                case 'studio':
-                    url.searchParams.append('is_studio', 'true');
-                    break;
-                case 'room':
-                    url.searchParams.append('is_room', 'true');
-                    break;
-                default:
-                    url.searchParams.append('rooms', String(roomQuantity));
-                    break;
+        if (type !== 'garages' && type !== 'commerce') {
+            if (roomQuantity) {
+                switch (roomQuantity) {
+                    case 'studio':
+                        url.searchParams.append('is_studio', 'true');
+                        break;
+                    case 'room':
+                        url.searchParams.append('is_room', 'true');
+                        break;
+                    default:
+                        url.searchParams.append('rooms', String(roomQuantity));
+                        break;
+                }
+            }
+            else {
+                url.searchParams.append('rooms[max]', String(roomMax));
+                url.searchParams.append('rooms[min]', String(roomMin));
             }
         }
-        else {
-            url.searchParams.append('rooms[max]', String(roomMax));
-            url.searchParams.append('rooms[min]', String(roomMin));
-        }
-        // const filters: Record<string, string> = {'is_active': 'false'}
-        // switch (roomQuantity) {
-        //     case 'studio':
-        //         filters['is_studio'] = 'true';
-        //         break;
-        //     case 'room':
-        //         filters['is_room'] = 'true';
-        //         break
-        //     default:
-        //         break;
-        // }
         const data = await fetch(url);
         if (!data.ok)
             return res.status(500).json({ error: 'Ошибка получения данных внешнего API' });

@@ -31,7 +31,7 @@ app.get('/api/:type', async (req, res) => {
         url.searchParams.append('order_dir', String(sort));
         url.searchParams.append('order_by', String(orderedBy));
         url.searchParams.append('is_active', String(isActive));
-       if (type !== 'garages' || 'commerce') { 
+       if (type !== 'garages' && type !== 'commerce') { 
         if (roomQuantity) {
             switch (roomQuantity) {
                 case 'studio':
