@@ -20,6 +20,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /var/www/project
+            git reset --hard HEAD
             git pull origin main
             
             cd server
