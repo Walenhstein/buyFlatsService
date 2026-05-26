@@ -1,8 +1,8 @@
-const api_link = new URL('http://45.130.146.26/api');
+const api_link = new URL('http://45.130.146.26');
 
 export async function fetchAll(type: string, page: string, sort: string, roomQuantity: string[]) {
     try {
-        const link = new URL(`/${type}`, api_link)
+        const link = new URL(`/api/${type}`, api_link)
         link.searchParams.append('page', page);
         link.searchParams.append('sort', sort);
         //if (roomQuantity) link.searchParams.append('roomQuantity', String(roomQuantity));
@@ -35,7 +35,7 @@ export async function fetchAll(type: string, page: string, sort: string, roomQua
 
 export async function fetchId(id: number, type: string) {
     try{
-        const link = new URL(`/${type}/${id}`, api_link) 
+        const link = new URL(`/api/${type}/${id}`, api_link) 
         const res = await fetch(link);
         if (!res.ok) return {error: `Прокладка между сервером сифонит`};
         return res.json();
