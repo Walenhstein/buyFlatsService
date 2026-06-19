@@ -1,14 +1,17 @@
-import { Modal, Text, Grid, Image, Loader, Center, Divider, ScrollArea, GridCol } from "@mantine/core";
+import { Modal, Text, Grid, Image, Loader, Center, Divider, ScrollArea, GridCol, Button } from "@mantine/core";
 import { useNavigate, useParams } from "react-router";
 import { Carousel } from '@mantine/carousel';
 import { useQuery } from "@tanstack/react-query";
 import { fetchId } from "../api/fetchObjects";
 import placeholderImg from '../assets/placeholder.webp';
+import ModalFormSubmit from "../components/ModalFormSubmit";
+import { useDisclosure } from "@mantine/hooks";
 
     export default function ObjectPage() {
     
     const navigate = useNavigate();
     const {id, type} = useParams();
+    const [opened, {open: openForm, close: closeForm}] = useDisclosure(false);
 
 
     
@@ -18,6 +21,7 @@ import placeholderImg from '../assets/placeholder.webp';
     })
     if (isLoading) return (<Center h={'100vh'}><Loader></Loader></Center>);
     if (isError) return (`Случилась критически въебичаская ошибка` + error);
+    
     const clearData = data.result?.object;
     const photos = clearData.photos;
 
@@ -44,7 +48,14 @@ import placeholderImg from '../assets/placeholder.webp';
                         </GridCol>
                     <GridCol span={12}><Divider/></GridCol>
                 </Grid>
-
+                <Divider mt={10} />
+                <Button type="button" onClick={openForm}>
+                    Оставить заявку
+                </Button>
+            </Modal>
+            
+            <Modal opened={opened} onClose={closeForm} centered title='Введите данные заявки'>
+                <ModalFormSubmit id={Number(id)} />
             </Modal>
         </>
     )

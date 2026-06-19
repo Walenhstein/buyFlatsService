@@ -12,7 +12,7 @@ import { useAppStore } from '../store/useAppStore';
 export default function ObjectBoardPage() {
 
     const {type} = useParams()
-    const [ searchParams, setSearchParams ] =  useSearchParams();
+    const [ searchParams, setSearchParams ] = useSearchParams();
     const page = searchParams.get('page') || '1';
     const sort = useAppStore((state) => state.sort) || 'desc';
     const roomQuantity = searchParams.get('roomQuantity')?.split(',') || [];
@@ -32,32 +32,9 @@ export default function ObjectBoardPage() {
         setSearchParams({...Object.fromEntries(searchParams), page: p.toString()});
     }
 
-    // const searchParamsSet = (value:string | string[], checked: boolean) => {
-    //     const addressList = new URLSearchParams(searchParams);
-    //     if (typeof value === 'string') {
-    //         if (!checked) {
-    //             addressList.delete('roomQuantity')
-    //             addressList.set('page', '1');
-    //             setSearchParams(addressList)
-    //         } else {
-    //             addressList.set('page', '1');
-    //             addressList.set('roomQuantity', String(value));
-    //             setSearchParams(addressList);
-    //         }
-    //     } else {
-    //         if (value.split(','))
-    //     }
-    // }
-    
     const searchParamsSet = (values: string[]) => {
         const addressList = new URLSearchParams(searchParams);
-        // if (values.length > 1) {
-        //     const roomArr: string[] = []; 
-        //     values.map((v) => {
-        //         roomArr.push(v)
-        //     });
-        //     addressList.set('roomQuantity', String(roomArr));
-        // }
+
         if (values.length === 0) {
             addressList.delete('roomQuantity');
         } else {
@@ -78,6 +55,7 @@ export default function ObjectBoardPage() {
          <>
             <Group mb={50}>
                 <Button onClick={() => navigator('/')}>Главная</Button>
+                <Button onClick={() => navigator(`map`)}>Карта</Button>
                 <ToggleThemeIcon/>
                 <ToggleSortIcon />
             </Group>
@@ -86,8 +64,9 @@ export default function ObjectBoardPage() {
     )
     return (
         <>
-            <Group mb={50}>
+            <Group h={130} align='center' justify='start'>
                 <Button onClick={() => navigator('/')}>Главная</Button>
+                <Button onClick={() => navigator(`map`)}>Карта</Button>
                 <ToggleThemeIcon />
                 <ToggleSortIcon />
                <Checkbox.Group

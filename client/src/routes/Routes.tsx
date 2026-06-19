@@ -5,6 +5,7 @@ import { Loader } from "@mantine/core";
 const CategoryPage = lazy(() => import("../pages/CategoryPage"));
 const ObjectBoardPage = lazy (() => import("../pages/ObjectBoardPage"));
 const ObjectPage = lazy(() => import("../pages/ObjectPage"));
+const ObjectMap = lazy(() => import("../pages/ObjectsMap"));
 
 
 
@@ -39,10 +40,27 @@ export const router = createBrowserRouter([
         children: [{
             path: ':id',
             element: (
-            <Suspense fallback={<Loader />}>
-                <ObjectPage />
-            </Suspense>
+                <Suspense fallback={<Loader />}>
+                    <ObjectPage />
+                </Suspense>
         ) 
+        }
+    ]
+    },
+    {
+        path: 'objects/:type/map',
+        element: (
+            <Suspense fallback={<Loader />}>
+                <ObjectMap />
+            </Suspense>
+        ),
+        children: [{
+            path: ':id',
+            element: (
+                <Suspense fallback={<Loader />}>
+                    <ObjectPage />
+                </Suspense>
+            )
         }]
     }
 ])

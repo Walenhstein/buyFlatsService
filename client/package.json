@@ -16,6 +16,7 @@
   "dependencies": {
     "@mantine/carousel": "^9.1.0",
     "@mantine/core": "^9.0.1",
+    "@mantine/form": "^9.2.2",
     "@mantine/hooks": "^9.0.1",
     "@tabler/icons-react": "^3.41.1",
     "@tanstack/react-query": "^5.96.2",
@@ -37,6 +38,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "@yandex/ymaps3-types": "^1.0.19917650",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
