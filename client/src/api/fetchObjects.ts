@@ -38,7 +38,7 @@ export async function fetchAll(type: string, page: string, sort: string, roomQua
 
 export async function fetchAllMap(type: string, page: string, sort: string, roomQuantity: string[]) {
     try {
-        const link = new URL(`${api_link}/api/${type}/map`)
+        const link = new URL(`${api_link}/api/${type}/map`, window.location.origin)
         link.searchParams.append('page', page);
         link.searchParams.append('sort', sort);
         //if (roomQuantity) link.searchParams.append('roomQuantity', String(roomQuantity));
