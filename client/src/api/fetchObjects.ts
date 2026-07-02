@@ -5,7 +5,7 @@ const api_link = '';
 
 export async function fetchAll(type: string, page: string, sort: string, roomQuantity: string[]) {
     try {
-        const link = new URL(`${api_link}/api/${type}`)
+        const link = new URL(`${api_link}/api/${type}`, window.location.origin)
         link.searchParams.append('page', page);
         link.searchParams.append('sort', sort);
         //if (roomQuantity) link.searchParams.append('roomQuantity', String(roomQuantity));
@@ -71,7 +71,7 @@ export async function fetchAllMap(type: string, page: string, sort: string, room
 
 export async function fetchId(id: number, type: string) {
     try{
-        const link = new URL(`${api_link}/api/${type}/${id}`) 
+        const link = new URL(`${api_link}/api/${type}/${id}`, window.location.origin) 
         const res = await fetch(link);
         if (!res.ok) return {error: `Прокладка между сервером сифонит`};
         return res.json();
