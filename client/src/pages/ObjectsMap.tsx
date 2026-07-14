@@ -75,11 +75,19 @@ export default function ObjectMap() {
         console.log(objects);
 
         objects.forEach((obj: any) => {
-            if (!obj.coordinates) return;
+            if (!obj || !obj.coordinates) return;
 
+            const lng = Number(obj.coordinates.lng);
+            const lat = Number(obj.coordinates.lat);
+
+            if (isNan(lng) || isNaN(lat) || lng === 0 || lat === 0) {
+                console.warn(`Объект ${obj.id} пропущен, невалидные координаты [${obj.coordinates.lng}, ${obj.coordinates.lat}]`);
+            }
 
             const marker = new YMapDefaultMarker({
-                coordinates: [Number(obj.coordinates.lng), Number(obj.coordinates.lat)],
+                location: {
+                    center: [lng, lat]
+                },
                 title: obj.title || obj.id,
                 subtitle: obj.price ? `${Number(obj.price).toLocaleString()} ₽` : undefined,
                 onClick: () => {
