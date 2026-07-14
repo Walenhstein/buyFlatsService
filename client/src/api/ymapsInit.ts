@@ -8,7 +8,7 @@ export default async function initMap(
     if (typeof(window as any).ymaps3 === 'undefined' && !document.getElementById('ymaps-script')) {
         const script = document.createElement('script');
         script.id = 'ymaps-script';
-        script.src = 'https://api-maps.yandex.ru/v3/?apikey=d6a02117-88b1-4de6-8555-bcf8b3ab3afd&lang=ru_RU&import=YMapDefaultMarker';
+        script.src = 'https://api-maps.yandex.ru/v3/?apikey=d6a02117-88b1-4de6-8555-bcf8b3ab3afd&lang=ru_RU&modules=YMapDefaultMarker';
         document.head.appendChild(script);
     }
 
