@@ -8,7 +8,7 @@ export default async function initMap(
     if (typeof(window as any).ymaps3 === 'undefined' && !document.getElementById('ymaps-script')) {
         const script = document.createElement('script');
         script.id = 'ymaps-script';
-        script.src = 'https://api-maps.yandex.ru/v3/?apikey=d6a02117-88b1-4de6-8555-bcf8b3ab3afd&lang=ru_RU';
+        script.src = 'https://api-maps.yandex.ru/v3/?apikey=d6a02117-88b1-4de6-8555-bcf8b3ab3afd&lang=ru_RU&import=YMapDefaultMarker';
         document.head.appendChild(script);
     }
 
@@ -30,13 +30,13 @@ export default async function initMap(
 
     map.addChild(new YMapDefaultFeaturesLayer({}));
 
-    try{
-        const markersPackage = await ymaps.import('@yandex/ymaps3-markers@0.0.1');
-        (window as any).YMapDefaultMarker = markersPackage.YMapDefaultMarker;
-        window.dispatchEvent(new Event('ymaps3-markers-ready'));
-    } catch(e) {
-        console.error("Не удалось динамически загрузить маркеры Яндекса:", e);
-    } 
+    // try{
+    //     const markersPackage = await ymaps.import('@yandex/ymaps3-markers@0.0.1');
+    //     (window as any).YMapDefaultMarker = markersPackage.YMapDefaultMarker;
+    //     window.dispatchEvent(new Event('ymaps3-markers-ready'));
+    // } catch(e) {
+    //     console.error("Не удалось динамически загрузить маркеры Яндекса:", e);
+    // } 
 
     return map;
 }
