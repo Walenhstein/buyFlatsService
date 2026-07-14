@@ -80,7 +80,7 @@ export default function ObjectMap() {
             const lng = Number(obj.coordinates.lng);
             const lat = Number(obj.coordinates.lat);
 
-            if (isNan(lng) || isNaN(lat) || lng === 0 || lat === 0) {
+            if (isNaN(lng) || isNaN(lat) || lng === 0 || lat === 0) {
                 console.warn(`Объект ${obj.id} пропущен, невалидные координаты [${obj.coordinates.lng}, ${obj.coordinates.lat}]`);
             }
 
