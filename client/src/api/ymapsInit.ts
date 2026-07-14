@@ -38,5 +38,11 @@ export default async function initMap(
     //     console.error("Не удалось динамически загрузить маркеры Яндекса:", e);
     // } 
 
+    const ymaps3DefaultMarker = (window as any).ymaps3.YMapDefaultMarker; 
+    if (ymaps3DefaultMarker) {
+        (window as any).YMapDefaultMarker = ymaps3DefaultMarker;
+        window.dispatchEvent(new Event('ymaps3-markers-ready'));
+    }
+
     return map;
 }
