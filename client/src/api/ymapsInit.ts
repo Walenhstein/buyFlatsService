@@ -28,7 +28,7 @@ export default async function initMap(
     });
     map.addChild(new YMapDefaultSchemeLayer({}));
 
-    map.addChild(new YMapDefaultFeaturesLayer({}));
+    // map.addChild(new YMapDefaultFeaturesLayer({}));
 
     // try{
     //     const markersPackage = await ymaps.import('@yandex/ymaps3-markers@0.0.1');
