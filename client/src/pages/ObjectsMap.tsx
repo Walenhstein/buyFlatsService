@@ -65,6 +65,8 @@ export default function ObjectMap() {
         markersRef.current = [];
 
         const YMapDefaultMarker = (window as any).YMapDefaultMarker;
+        if (!mapInstance.current || !data || !markersLoaded || !YMapDefaultMarker) return;
+        
         if (!YMapDefaultMarker){
             console.error("КРИТИКА: Модуль YMapDefaultMarker не найден! Проверь, что в index.html в теге <script> подключено '&import=YMapDefaultMarker'");
             return;
