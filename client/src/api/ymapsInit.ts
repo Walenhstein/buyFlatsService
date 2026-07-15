@@ -28,7 +28,7 @@ export default async function initMap(
     });
     map.addChild(new YMapDefaultSchemeLayer({}));
 
-    // map.addChild(new YMapDefaultFeaturesLayer({}));
+    map.addChild(new YMapDefaultFeaturesLayer({}));
 
     // try{
     //     const markersPackage = await ymaps.import('@yandex/ymaps3-markers@0.0.1');
@@ -42,8 +42,8 @@ try {
         const { YMapMarker } = ymaps;
 
         // Пишем свой мини-класс, который полностью заменяет YMapDefaultMarker
-        class CustomMarkerEmulator extends YMapMarker {
-            constructor(props: any) {
+        class CustomMarkerEmulator extends (YMapMarker as any) {
+            constructor(props: {coordinates: [number, number], onClick?: () => void}) {
                 // Создаем HTML-внешку для маркера
                 const element = document.createElement('div');
                 element.className = 'custom-yandex-marker';
@@ -61,7 +61,7 @@ try {
                 }
 
                 // Передаем настройки и созданный DOM-элемент в родительский класс Яндекса
-                super({ location: props.location }, element);
+                super({ coordinates: props.coordinates }, element);
             }
         }
 
