@@ -38,42 +38,54 @@ export default async function initMap(
     //     console.error("Не удалось динамически загрузить маркеры Яндекса:", e);
     // } 
 
-try {
-        const { YMapMarker } = ymaps;
-
-        // Пишем свой мини-класс, который полностью заменяет YMapDefaultMarker
-        class CustomMarkerEmulator extends (YMapMarker as any) {
-            constructor(props: {coordinates: [number, number], onClick?: () => void}) {
-                // Создаем HTML-внешку для маркера
-                const element = document.createElement('div');
-                element.className = 'custom-yandex-marker';
-                element.style.width = '20px';
-                element.style.height = '20px';
-                element.style.backgroundColor = '#007af5'; // Красивый синий цвет
-                element.style.borderRadius = '50%';
-                element.style.border = '2px solid white';
-                element.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
-                element.style.cursor = 'pointer';
-
-                // Если во фронтенде на маркер вешался клик, можно поймать его тут:
-                if (props.onClick) {
-                    element.addEventListener('click', props.onClick);
-                }
-
-                // Передаем настройки и созданный DOM-элемент в родительский класс Яндекса
-                super({ coordinates: props.coordinates }, element);
-            }
-        }
-
-        // Закидываем наш эмулятор в window, чтобы другие компоненты его увидели, когда координаты прилетят
-        (window as any).YMapDefaultMarker = CustomMarkerEmulator;
+    try {
+        const markersPackage = await ymaps.import('@yandex/ymaps3-markers@0.0.1');
         
-        // Машем флажком: "Гитхаб-экшен отработал, маркеры готовы к рендеру!"
+        // Экспортируем дефолтный маркер в глобальную область, чтобы React-компоненты каталога его увидели
+        (window as any).YMapDefaultMarker = markersPackage.YMapDefaultMarker;
+        
+        // Сигнализируем приложению, что дефолтные маркеры успешно загружены и готовы к рендеру
         window.dispatchEvent(new Event('ymaps3-markers-ready'));
-
     } catch (e) {
-        console.error("Не удалось проинициализировать эмулятор маркеров:", e);
+        console.error("Не удалось динамически загрузить дефолтные маркеры Яндекса:", e);
     }
+
+// try {
+//         const { YMapMarker } = ymaps;
+
+//         // Пишем свой мини-класс, который полностью заменяет YMapDefaultMarker
+//         class CustomMarkerEmulator extends (YMapMarker as any) {
+//             constructor(props: {coordinates: [number, number], onClick?: () => void}) {
+//                 // Создаем HTML-внешку для маркера
+//                 const element = document.createElement('div');
+//                 element.className = 'custom-yandex-marker';
+//                 element.style.width = '20px';
+//                 element.style.height = '20px';
+//                 element.style.backgroundColor = '#007af5'; // Красивый синий цвет
+//                 element.style.borderRadius = '50%';
+//                 element.style.border = '2px solid white';
+//                 element.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)';
+//                 element.style.cursor = 'pointer';
+
+//                 // Если во фронтенде на маркер вешался клик, можно поймать его тут:
+//                 if (props.onClick) {
+//                     element.addEventListener('click', props.onClick);
+//                 }
+
+//                 // Передаем настройки и созданный DOM-элемент в родительский класс Яндекса
+//                 super({ coordinates: props.coordinates }, element);
+//             }
+//         }
+
+//         // Закидываем наш эмулятор в window, чтобы другие компоненты его увидели, когда координаты прилетят
+//         (window as any).YMapDefaultMarker = CustomMarkerEmulator;
+        
+//         // Машем флажком: "Гитхаб-экшен отработал, маркеры готовы к рендеру!"
+//         window.dispatchEvent(new Event('ymaps3-markers-ready'));
+
+//     } catch (e) {
+//         console.error("Не удалось проинициализировать эмулятор маркеров:", e);
+//     }
 
     return map;
 }

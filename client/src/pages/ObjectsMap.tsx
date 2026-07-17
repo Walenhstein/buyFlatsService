@@ -87,7 +87,7 @@ export default function ObjectMap() {
             }
 
             const marker = new YMapDefaultMarker({
-                coordinates:  [lat, lng],
+                coordinates:  [lng, lat],
                 title: obj.title || obj.id,
                 subtitle: obj.price ? `${Number(obj.price).toLocaleString()} ₽` : undefined,
                 onClick: () => {
