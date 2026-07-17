@@ -74,7 +74,7 @@ export default function ObjectMap() {
 
         const objects = Array.isArray(data) ? data : (data as any)?.result?.list || [];
 
-        console.log(objects);
+        // console.log(objects);
 
         objects.forEach((obj: any) => {
             if (!obj || !obj.coordinates) return;
@@ -87,9 +87,7 @@ export default function ObjectMap() {
             }
 
             const marker = new YMapDefaultMarker({
-                location: {
-                    center: [lng, lat]
-                },
+                coordinates:  [lat, lng],
                 title: obj.title || obj.id,
                 subtitle: obj.price ? `${Number(obj.price).toLocaleString()} ₽` : undefined,
                 onClick: () => {
